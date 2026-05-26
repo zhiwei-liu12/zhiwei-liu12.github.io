@@ -1,0 +1,33 @@
+baseURL = "https://invincccc.github.io/"
+title = "Blog"
+theme = "PaperMod"
+defaultContentLanguage = "zh"
+
+[languages]
+  [languages.zh]
+    languageName = "中文"
+    weight = 1
+    [languages.zh.params]
+      description = "我的研究笔记与想法"
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    [languages.en.params]
+      description = "My research notes and ideas"
+
+[params]
+  math = true
+  ShowToc = true
+  ShowCodeCopyButtons = true
+  ShowShareButtons = true
+  ShowReadingTime = true
+  defaultTheme = "auto"
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
+    codeFences = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
