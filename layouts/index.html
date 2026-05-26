@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zhiwei Liu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --text: #2c2c2c;
+      --text-secondary: #555;
+      --accent: #1a5276;
+      --accent-light: #2980b9;
+      --border: #ddd;
+      --card-bg: #fff;
+      --tag-bg: #eef3f7;
+      --tag-text: #1a5276;
+      --nav-bg: #1a2332;
+      --nav-text: #ccc;
+      --nav-active: #fff;
+      --section-alt: #f4f4f2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Sans 3', 'Noto Sans SC', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    nav .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 52px;
+    }
+
+    nav .nav-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--nav-active);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+
+    nav .nav-links a {
+      color: var(--nav-text);
+      text-decoration: none;
+      font-size: 0.88rem;
+      margin-left: 28px;
+      transition: color 0.2s;
+      font-weight: 400;
+    }
+
+    nav .nav-links a:hover { color: var(--nav-active); }
+
+    /* ── Main Container ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Hero / Bio ── */
+    .hero {
+      padding-top: 100px;
+      padding-bottom: 48px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 3.2rem;
+      font-family: 'Crimson Pro', serif;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .hero-info { flex: 1; }
+
+    .hero-info h1 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .hero-info h1 span {
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-left: 12px;
+    }
+
+    .hero-info .affiliation {
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .hero-info .affiliation a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero-info .affiliation a:hover {
+      text-decoration: underline;
+    }
+
+    .hero-info .contact-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .hero-info .contact-row a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero-info .contact-row a:hover { text-decoration: underline; }
+
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--tag-bg);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .social-icons a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section h2 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    section p, section li {
+      font-size: 0.98rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    section a:hover { text-decoration: underline; }
+
+    /* ── Research Interests ── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .interest-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      transition: box-shadow 0.2s;
+    }
+
+    .interest-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .interest-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .interest-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Publications ── */
+    .pub-item {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid #eee;
+      align-items: flex-start;
+    }
+
+    .pub-item:last-child { border-bottom: none; }
+
+    .pub-venue {
+      flex-shrink: 0;
+      width: 110px;
+      text-align: right;
+      padding-top: 2px;
+    }
+
+    .pub-venue .venue-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+
+    .pub-venue .venue-status {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .pub-content { flex: 1; }
+
+    .pub-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .pub-content .pub-authors {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .pub-content .pub-authors strong {
+      color: var(--text);
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pub-links a {
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .pub-links a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Awards ── */
+    .awards-list {
+      list-style: none;
+    }
+
+    .awards-list li {
+      padding: 8px 0;
+      padding-left: 20px;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .awards-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Skills ── */
+    .skills-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .skill-tag {
+      font-size: 0.85rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-weight: 500;
+    }
+
+    /* ── Education ── */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .edu-item:last-child { border-bottom: none; }
+
+    .edu-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .edu-info p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .edu-date {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 20px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+      }
+
+      .hero-info h1 span { display: block; margin-left: 0; margin-top: 4px; }
+      .contact-row { justify-content: center; }
+      .social-icons { justify-content: center; }
+      .pub-item { flex-direction: column; }
+      .pub-venue { text-align: left; width: auto; }
+      nav .nav-links a { margin-left: 16px; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#">ZHIWEI LIU</a>
+    <div class="nav-links">
+      <a href="#bio">Bio</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#awards">Awards</a>
+      <a href="#education">Education</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero" id="bio">
+    <div class="hero-photo">ZL</div>
+    <div class="hero-info">
+      <h1>Zhiwei Liu <span>刘志伟</span></h1>
+      <div class="affiliation">
+        Undergraduate, Data Computing and Applications<br>
+        <a href="https://www.ruc.edu.cn/">Renmin University of China (RUC)</a><br>
+        GPA: 3.73 / 4.0 &nbsp;·&nbsp; Rank: 1 / 22
+      </div>
+      <div class="contact-row">
+        <span>✉ liuzhiwei1220@ruc.edu.cn</span>
+      </div>
+      <div class="social-icons">
+        <a href="https://github.com/zhiwei-liu12" title="GitHub">GH</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bio -->
+  <section>
+    <h2>Bio</h2>
+    <p>
+      I am an undergraduate student at <a href="https://www.ruc.edu.cn/">Renmin University of China</a>, majoring in Data Computing and Applications (ranked 1/22).
+      My research focuses on <strong>efficient training and inference for large language models</strong>, particularly KV cache compression, attention mechanism design, and cross-layer communication budget allocation in Transformer architectures.
+    </p>
+    <p style="margin-top: 12px;">
+      I am currently working on <strong>IA-KV (Interface-Aware KV Compression)</strong>, a project that reframes KV compression as a cross-layer communication capacity allocation problem.
+      I am also first author of a study on heterogeneous RoPE dimension allocation in MLA architectures, and a contributor to QK-Coupling (NeurIPS 2026).
+    </p>
+  </section>
+
+  <!-- Research Interests -->
+  <section id="research">
+    <h2>Research Interests</h2>
+    <div class="interests-grid">
+      <div class="interest-card">
+        <h3>KV Cache Compression</h3>
+        <p>Cross-layer communication budget allocation, interface layer detection, non-uniform compression strategies for MLA/GQA/MQA architectures.</p>
+      </div>
+      <div class="interest-card">
+        <h3>Attention Mechanism Design</h3>
+        <p>Heterogeneous positional encoding (RoPE) allocation, QK coupling and shared attention routing, efficient attention architectures.</p>
+      </div>
+      <div class="interest-card">
+        <h3>Efficient LLM Training</h3>
+        <p>Compression-induced interface formation, MoE routing and attention coupling, parameter-efficient training paradigms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <div class="pub-item">
+      <div class="pub-venue">
+        <span class="venue-name">In Preparation</span>
+        <span class="venue-status">First Author</span>
+      </div>
+      <div class="pub-content">
+        <h3>Heterogeneous RoPE Dimension Allocation via Dependency Analysis in MLA</h3>
+        <p class="pub-authors"><strong>Zhiwei Liu</strong></p>
+        <p style="font-size:0.9rem; color:#555; margin-bottom:6px;">Discovering that different layers in MLA architectures exhibit varying dependence on positional information (RoPE), and proposing per-layer heterogeneous RoPE dimension allocation guided by early-stage profiling.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-venue">
+        <span class="venue-name">NeurIPS 2026</span>
+        <span class="venue-status">CCF A · Contributor</span>
+      </div>
+      <div class="pub-content">
+        <h3>QK-Coupling: Shared Attention Routing and Efficient Transformer Learning</h3>
+        <p class="pub-authors">Authors including <strong>Zhiwei Liu</strong></p>
+        <p style="font-size:0.9rem; color:#555; margin-bottom:6px;">Systematic verification of multi-anchor QK coupling in LLMs: Query and Key cosine trajectories align at multiple anchors across model families and depths, enabling a QK coupling parameterization framework for dense pretraining, MLA pretraining, and LoRA fine-tuning.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-venue">
+        <span class="venue-name">电子与信息学报</span>
+        <span class="venue-status">CCF T1 · Under Review</span>
+      </div>
+      <div class="pub-content">
+        <h3>RSOG: Multi-source Remote Sensing Large Model for Open Instructions</h3>
+        <p class="pub-authors"><strong>Zhiwei Liu*</strong>, et al. (* co-first author)</p>
+        <p style="font-size:0.9rem; color:#555; margin-bottom:6px;">A remote sensing multimodal LLM with instruction-dynamic matching and decomposition mechanisms, achieving ~76% mAP improvement on open-instruction tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section id="awards">
+    <h2>Awards &amp; Honors</h2>
+    <ul class="awards-list">
+      <li>National Second Prize, China Undergraduate Mathematical Contest in Modeling</li>
+      <li>Grand Prize (Top 5%), RUC "Innovation Cup" — Fairness-aware survival prediction for stem cell transplantation</li>
+      <li>Academic Excellence Scholarship, Renmin University of China</li>
+      <li>Merit Student (三好学生), Renmin University of China</li>
+      <li>Third Prize, National Undergraduate Mathematics Competition (Mathematics Track)</li>
+    </ul>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu-item">
+      <div class="edu-info">
+        <h3>Renmin University of China</h3>
+        <p>B.S. in Data Computing and Applications &nbsp;·&nbsp; GPA: 3.73/4.0 &nbsp;·&nbsp; Rank: 1/22</p>
+      </div>
+      <div class="edu-date">2025.09 – Present</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-info">
+        <h3>Renmin University of China</h3>
+        <p>Economics & Mathematics Dual-Degree Experimental Class (transferred out)</p>
+      </div>
+      <div class="edu-date">2023.09 – 2025.06</div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-row">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">C++</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">PyTorch</span>
+      <span class="skill-tag">Git</span>
+      <span class="skill-tag">Flask</span>
+      <span class="skill-tag">MySQL</span>
+      <span class="skill-tag">CET-6 (612)</span>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  &copy; 2026 Zhiwei Liu · Built with care
+</footer>
+
+</body>
+</html>
